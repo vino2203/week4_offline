@@ -1,0 +1,9 @@
+Backend/.venv/
+Backend/.env
+Backend/faiss_index/
+Backend/uploads/
+__pycache__/
+*.pyc
+.pytest_cache/
+.deepeval/
+.DS_Store

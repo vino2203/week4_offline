@@ -1,0 +1,26 @@
+services:
+  backend:
+    build: ./Backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./Backend/.env
+    volumes:
+      - ./Backend/faiss_index:/app/faiss_index
+      - ./Backend/uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  frontend:
+    build: ./Frontend
+    ports:
+      - "8601:8501"
+    environment:
+      - API_BASE_URL=http://backend:8000
+    depends_on:
+      backend:
+        condition: service_healthy

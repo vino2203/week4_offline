@@ -1,0 +1,9 @@
+.venv/
+.env
+.env.example
+faiss_index/
+uploads/
+tests/
+__pycache__/
+*.pyc
+.pytest_cache/
